@@ -1,4 +1,4 @@
-# DebugPlus
+# Unity-DebugPlus
 
 ## Overview
 DebugPlus is a utility class designed to provide additional logging capabilities for Unity projects. It includes functions to write log messages to a debug file, and logging collections.
