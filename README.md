@@ -65,5 +65,3 @@ DebugPlus.Log("This is a test log message.");
    int result = 10 + 20;
    DebugPlus.Log("The result is: " + result);
    ```
-
-This README file provides a comprehensive guide on how to use and understand the `DebugPlus` class in your project. It includes usage examples, explanations of each function, and additional resources for further learning.
