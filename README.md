@@ -1,67 +1,65 @@
-# Unity-DebugPlus
+# DebugPlus
 
+## Overview
+DebugPlus is a utility class designed to provide additional logging capabilities for Unity projects. It includes functions to write log messages to a debug file, and logging collections.
 
-## Table of Contents
+## Usage
 
-1. **Introduction**
-2. **Usage of DebugPlus Class**
-3. **Functions and Their Usage**
-4. **Examples**
+### 1. Writing to Debug File
+You can use the `WriteToDebugFile` function to log messages to a debug file. The function takes three parameters:
+- `data`: The message or data you want to write to the debug file.
+- `fileName` (optional): The name of the file to write to. If not provided, it defaults to `"debug.txt"` in the root directory of your project (`Application.dataPath`).
+- `folderPath` (optional): The path of the folder where the file should be created. If not provided, it uses the default path (`Application.dataPath`).
 
----
-
-### Introduction
-
-Adds additional debug functionality such as; printing collections (arrays/lists etc.) and printing to a debug text file.
-
-### Usage of DebugPlus Class
-
-#### Writing to Debug File
-To write to a debug file, you can use the `WriteToDebugFile` method. You need to specify the data you want to log and optionally the file name and folder path.
-
+#### Example Usage
 ```csharp
-DebugPlus.WriteToDebugFile("This is a test message.");
+using UsefulUtilities;
+
+public class Example : MonoBehaviour
+{
+    void Start()
+    {
+        DebugPlus.WriteToDebugFile("Starting the game.", "log.txt", "Logs");
+    }
+}
 ```
 
-or
+### 2. Logging Collections
+DebugPlus provides methods to log collections of different types, such as arrays, lists, queues, linked lists, stacks, ArrayLists, SortedLists, SortedSets, SortedDictionaries, HashTables, and HashSets. You can specify a separator for the output.
 
+#### Example Usage
 ```csharp
-DebugPlus.WriteToDebugFile("Another test message.", "app-debug.log");
+using UsefulUtilities;
+
+public class Example : MonoBehaviour
+{
+    void Start()
+    {
+        DebugPlus.LogCollection(new int[] { 1, 2, 3, 4 }, " - ");
+    }
+}
 ```
 
-#### Logging Collections
-The `LogCollection` methods are used to log collections of data. They can be generic or non-generic, depending on the type of collection you want to log.
+## Documentation
 
-```csharp
-int[] numbers = { 1, 2, 3 };
-DebugPlus.LogCollection(numbers);
+### 3. Public Functions
 
-NativeArray<float> floatNumbers = new NativeArray<float>(new int[]{ 4, 5, 6 }, Allocator.Temp);
-DebugPlus.LogCollection(floatNumbers);
-```
-
-#### Logging Additional Information
-The `Log` method can be used to log any other information you want to include in your debug output.
-
-```csharp
-DebugPlus.Log("This is a test log message.");
-```
-
-### Examples
-
-1. **Writing to File with Specific Folder Path**
-   ```csharp
-   DebugPlus.WriteToDebugFile("This is a test message.", "app-debug.log", "path/to/folder");
-   ```
-
-2. **Logging Collections with Formatting**
-   ```csharp
-   string[] strings = { "Hello", "World" };
-   DebugPlus.LogCollection(strings, ", ");
-   ```
-
-3. **Additional Logging Example**
-   ```csharp
-   int result = 10 + 20;
-   DebugPlus.Log("The result is: " + result);
-   ```
+| Function Name | Description |
+| --- | --- |
+| `WriteToDebugFile(string data, string fileName = DEBUG_FILE_NAME, string folderPath = null)` | Writes a log message to a debug file. |
+| `LogCollection<T>(T[] collection, string seperator = ", ")` | Logs an array of any type. |
+| `LogCollection<T>(NativeArray<T> collection, string seperator = ", ") where T : struct` | Logs a native array of any struct. |
+| `LogCollection<T>(List<T> collection, string seperator = ", ")` | Logs a list of any type. |
+| `LogCollection<T>(Queue<T> collection, string seperator = ", ")` | Logs a queue of any type. |
+| `LogCollection(Queue collection, string seperator = ", ")` | Logs a queue of any type. |
+| `LogCollection<T>(LinkedList<T> collection, string seperator = ", ")` | Logs a linked list of any type. |
+| `LogCollection<T>(Stack<T> collection, string seperator = ", ")` | Logs a stack of any type. |
+| `LogCollection(Stack collection, string seperator = ", ")` | Logs a stack of any type. |
+| `LogCollection(ArrayList collection, string seperator = ", ")` | Logs an ArrayList of any type. |
+| `LogCollection(SortedList collection, string seperator = ", ")` | Logs a SortedList of any type. |
+| `LogCollection<K, V>(SortedList<K, V> collection, string seperator = ", ")` | Logs a SortedList of key-value pairs with any types for keys and values. |
+| `LogCollection(Hashtable collection, string seperator = ", ")` | Logs a Hashtable of any type for keys and values. |
+| `LogCollection<T>(SortedSet<T> collection, string seperator = ", ")` | Logs a SortedSet of any type. |
+| `LogCollection<K, V>(SortedDictionary<K, V> collection, string seperator = ", ")` | Logs a SortedDictionary of key-value pairs with any types for keys and values. |
+| `LogCollection<K, V>(Dictionary<K, V> collection, string seperator = ", ")` | Logs a Dictionary of key-value pairs with any types for keys and values. |
+| `LogCollection<T>(HashSet<T> collection, string seperator = ", ")` | Logs a HashSet of any type. |
